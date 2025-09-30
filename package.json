@@ -1,0 +1,39 @@
+{
+    "name"            : "tmp-monorepo-base",
+    "version"         : "1.0.0",
+    "description"     : "Monorepo with React frontend (Vite + TS) and Express backend (TS)",
+    "private"         : true,
+    "workspaces"      : [ "packages/*" ],
+    "keywords"        : [ ],
+    "author"          : "Ivan Ruskevych <fullstack.dev.goit@gmail.com>",
+    "license"         : "MIT",
+    "type"            : "module",
+    "scripts"         : {
+        "prepare"         : "husky",
+        "lint"            : "eslint packages/backend/src packages/frontend/src --cache",
+        "lint:warn"       : "eslint packages/backend/src packages/frontend/src",
+        "lint:fix"        : "eslint packages/backend/src packages/frontend/src --fix",
+        "format"          : "prettier --write \"packages/{frontend,backend}/src/**/*.{json,md,mdx,yml,yaml,css,scss,html}\" --ignore-unknown",
+        "format:frontend" : "prettier --write \"packages/frontend/src/**/*.{json,md,mdx,yml,yaml,css,scss,html}\"",
+        "format:backend"  : "prettier --write \"packages/backend/src/**/*.{json,md,mdx,yml,yaml,css,scss,html}\""
+    },
+    "devDependencies" : {
+        "@eslint/js"                        : "9.33.0",
+        "@typescript-eslint/eslint-plugin"  : "^8.40.0",
+        "@typescript-eslint/parser"         : "^8.40.0",
+        "eslint"                            : "9.33.0",
+        "eslint-config-prettier"            : "10.1.8",
+        "eslint-import-resolver-typescript" : "^4.4.4",
+        "eslint-plugin-import"              : "^2.32.0",
+        "eslint-plugin-prettier"            : "5.5.4",
+        "eslint-plugin-react"               : "^7.37.5",
+        "eslint-plugin-react-hooks"         : "5.2.0",
+        "eslint-plugin-react-refresh"       : "0.4.20",
+        "globals"                           : "16.3.0",
+        "husky"                             : "9.1.7",
+        "lint-staged"                       : "16.1.5",
+        "prettier"                          : "3.6.2",
+        "typescript"                        : "5.9.2",
+        "typescript-eslint"                 : "8.40.0"
+    }
+}
