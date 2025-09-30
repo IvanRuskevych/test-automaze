@@ -1,37 +1,48 @@
 {
-    "name"            : "backend",
-    "version"         : "1.0.0",
-    "description"     : "",
-    "main"            : "main.ts",
-    "license"         : "MIT",
-    "type"            : "module",
-    
-    "scripts"         : {
-        "dev"          : "tsx watch src/main.ts",
-        "build"        : "rimraf dist && tsc && tsc-alias",
-        "start"        : "node dist/main.js",
-        "serve"        : "concurrently \"tsc -w\" \"tsc-alias -w\" \"nodemon dist/main.js\"",
-        "start:prod"   : "NODE_ENV=production node dist/main.js",
-        "copy:graphql" : "npm run copy:graphql"
-    },
-    "dependencies"    : {
-        "cookie-parser" : "1.4.7",
-        "cors"          : "2.8.5",
-        "dotenv"        : "17.2.1",
-        "express"       : "5.1.0",
-        "zod"           : "^4.1.0"
-    },
-    "devDependencies" : {
-        "@types/cookie-parser" : "1.4.9",
-        "@types/cors"          : "2.8.19",
-        "@types/express"       : "5.0.3",
-        "@types/node"          : "24.3.0",
-        "concurrently"         : "9.2.0",
-        "cpx"                  : "1.5.0",
-        "nodemon"              : "3.1.10",
-        "rimraf"               : "6.0.1",
-        "tsc-alias"            : "1.8.16",
-        "tsconfig-paths"       : "4.2.0",
-        "tsx"                  : "4.20.4"
-    }
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "rimraf dist && tsc && tsc-alias",
+    "start": "node dist/main.js",
+    "serve": "concurrently \"tsc -w\" \"tsc-alias -w\" \"nodemon dist/main.js\"",
+    "start:prod": "NODE_ENV=production node dist/main.js",
+    "copy:graphql": "npm run copy:graphql",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "@as-integrations/express5": "^1.1.2",
+    "@graphql-tools/load-files": "^7.0.1",
+    "@graphql-tools/merge": "^9.1.1",
+    "@graphql-tools/schema": "^10.0.25",
+    "@prisma/adapter-pg": "^6.16.3",
+    "@prisma/client": "^6.16.3",
+    "@types/node": "^24.6.0",
+    "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
+    "dotenv": "17.2.1",
+    "express": "5.1.0",
+    "graphql": "^16.11.0",
+    "typescript": "^5.9.2",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "1.4.9",
+    "@types/cors": "2.8.19",
+    "@types/express": "5.0.3",
+    "@types/node": "^24.6.0",
+    "concurrently": "9.2.0",
+    "cpx": "1.5.0",
+    "nodemon": "3.1.10",
+    "prisma": "^6.16.2",
+    "rimraf": "6.0.1",
+    "tsc-alias": "1.8.16",
+    "tsconfig-paths": "4.2.0"
+  }
 }
