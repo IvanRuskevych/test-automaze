@@ -2,7 +2,7 @@
 # Queries
 # -----------------------------
 type Category {
-  categoryId: ID!
+  id: ID!
   name: String!
   tasks: [Task!]!
 }
@@ -25,7 +25,7 @@ extend type Query {
 # -----------------------------
 
 extend type Mutation {
-  createCategory(input: CategoryCreateInput!): Category!
-  updateCategory(categoryId: ID!, input: CategoryUpdateInput!): Category!
+  createCategory(input: CategoryCreateInput): Category!
+  updateCategory(categoryId: ID!, input: CategoryUpdateInput): Category!
   deleteCategory(categoryId: ID!): Category!
 }
