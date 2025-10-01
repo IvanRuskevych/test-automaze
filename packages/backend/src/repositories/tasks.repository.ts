@@ -1,10 +1,18 @@
 import { Prisma, Task } from '@prisma/client';
+import { TaskCreateInput } from '~/graphql/generated/graphql.js';
 import { prismaClient } from '~/prisma/client.js';
 
-export const taskRepository = {
-  create: (input: Prisma.TaskCreateInput, args?: Omit<Prisma.TaskCreateArgs, 'data'>): Promise<Task> => {
+export const tasksRepository = {
+  create: (input: TaskCreateInput, args?: Omit<Prisma.TaskCreateArgs, 'data'>): Promise<Task> => {
+    const data: Prisma.TaskCreateInput = {
+      title: input.title,
+      description: input.description,
+      priority: input.priority || undefined,
+      ...(input.categoryId && { category: { connect: { id: input.categoryId } } }),
+    };
+
     return prismaClient.task.create({
-      data: input,
+      data,
       ...args,
     });
   },

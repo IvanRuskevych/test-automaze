@@ -1,2 +1,2 @@
 export * from './category.js';
-export * from './task.js';
+export * from './tasks.repository.js';
