@@ -141,3 +141,6 @@ vite.config.ts.timestamp-*
 # JetBrains IDE
 .idea/
 *.iml
+
+#Graphql codegen
+/packages/backend/src/graphql/generated/

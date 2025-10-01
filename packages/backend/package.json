@@ -13,7 +13,8 @@
     "start:prod": "NODE_ENV=production node dist/main.js",
     "copy:graphql": "npm run copy:graphql",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down"
+    "docker:down": "docker-compose down",
+    "codegen": "graphql-codegen --config ./codegen.ts"
   },
   "dependencies": {
     "@apollo/server": "^5.0.0",
@@ -33,6 +34,10 @@
     "zod": "^4.1.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.0.0",
+    "@graphql-codegen/typescript": "^5.0.1",
+    "@graphql-codegen/typescript-document-nodes": "^5.0.1",
+    "@graphql-codegen/typescript-resolvers": "^5.0.1",
     "@types/cookie-parser": "1.4.9",
     "@types/cors": "2.8.19",
     "@types/express": "5.0.3",
