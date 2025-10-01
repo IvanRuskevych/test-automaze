@@ -1,8 +1,9 @@
 import { Category, Prisma } from '@prisma/client';
+import { CategoryCreateInput } from '~/graphql/generated/graphql.js';
 import { prismaClient } from '~/prisma/client.js';
 
-export const categoryRepository = {
-  create: (input: Prisma.CategoryCreateInput, args?: Omit<Prisma.CategoryCreateArgs, 'data'>): Promise<Category> => {
+export const categoriesRepository = {
+  create: (input: CategoryCreateInput, args?: Omit<Prisma.CategoryCreateArgs, 'data'>): Promise<Category> => {
     return prismaClient.category.create({
       data: input,
       ...args,

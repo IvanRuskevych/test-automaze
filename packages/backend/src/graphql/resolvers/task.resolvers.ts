@@ -6,7 +6,7 @@ import {
   QueryGetTaskArgs,
   QueryGetTasksArgs,
 } from '~/graphql/generated/graphql.js';
-import { taskService } from '~/services/task.service.js';
+import { taskService } from '~/services/index.js';
 
 export const taskResolvers = {
   Query: {
