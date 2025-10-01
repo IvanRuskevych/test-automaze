@@ -11,11 +11,11 @@ import { CategoryCreateSchema, CategoryUpdateSchema, UuidSchema } from '~/valida
 export const categoryService = {
   getCategory: async (args: QueryGetCategoryArgs) => {
     validateInput(UuidSchema, { id: args.categoryId });
-    return await categoriesRepository.findById(args.categoryId);
+    return await categoriesRepository.findById(args.categoryId, { include: { tasks: true } });
   },
 
   getCategories: async () => {
-    return categoriesRepository.findMany();
+    return categoriesRepository.findMany({ include: { tasks: true } });
   },
 
   createCategory: async (args: MutationCreateCategoryArgs) => {

@@ -1,8 +1,12 @@
-import { tasksRepository } from '~/repositories/index.js';
 import { ApiErrors } from '~/utils/errors/index.js';
 
-export async function getTaskOrFail(taskId: string) {
-  const task = await tasksRepository.findById(taskId);
-  if (!task) throw ApiErrors.NotFound('Task not found');
-  return task;
+export async function getEntityOrFail<T>(
+  repository: { findById: (id: string) => Promise<T | null> },
+  id: string,
+  notFoundMessage: string,
+): Promise<T> {
+  const entity = await repository.findById(id);
+  if (!entity) throw ApiErrors.NotFound(notFoundMessage);
+
+  return entity;
 }

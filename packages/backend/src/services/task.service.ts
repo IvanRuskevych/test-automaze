@@ -8,13 +8,18 @@ import {
   QueryGetTasksArgs,
 } from '~/graphql/generated/graphql.js';
 import { tasksRepository } from '~/repositories/index.js';
-import { getTaskOrFail, validateInput } from '~/utils/index.js';
+import { getEntityOrFail, validateInput } from '~/utils/index.js';
 import { TaskUpdateSchema, UuidSchema } from '~/validation/index.js';
 import { TaskCreateSchema } from '~/validation/task.schema.js';
 
 export const taskService = {
   getTask: async (args: QueryGetTaskArgs) => {
-    return await tasksRepository.findById(args.taskId);
+    const { taskId } = args;
+
+    validateInput(UuidSchema, { id: taskId });
+    await getEntityOrFail(tasksRepository, taskId, 'Task not found');
+
+    return tasksRepository.findById(taskId, { include: { category: true } });
   },
 
   getTasks: async (args: QueryGetTasksArgs) => {
@@ -55,7 +60,7 @@ export const taskService = {
     const { taskId, input } = args;
 
     validateInput(UuidSchema, { id: taskId });
-    await getTaskOrFail(taskId);
+    await getEntityOrFail(tasksRepository, args.taskId, 'Task not found');
 
     const validatedInput = validateInput(TaskUpdateSchema, input);
     return tasksRepository.update(taskId, validatedInput);
@@ -65,7 +70,7 @@ export const taskService = {
     const { taskId } = args;
 
     validateInput(UuidSchema, { id: taskId });
-    await getTaskOrFail(taskId);
+    await getEntityOrFail(tasksRepository, taskId, 'Task not found');
 
     return tasksRepository.delete(taskId);
   },
@@ -74,7 +79,7 @@ export const taskService = {
     const { taskId, input } = args;
 
     validateInput(UuidSchema, { id: taskId });
-    await getTaskOrFail(taskId);
+    await getEntityOrFail(tasksRepository, taskId, 'Task not found');
 
     const validatedInput = validateInput(TaskUpdateSchema, input);
     return tasksRepository.update(taskId, validatedInput);
