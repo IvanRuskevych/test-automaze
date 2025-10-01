@@ -12,7 +12,14 @@ import { fileURLToPath } from 'url';
 
 export default tseslint.config([
   {
-    ignores: ['**/.idea/**', '**/node_modules/**', '**/dist/**', '**/build/**', '**/generated/**'],
+    ignores: [
+      '**/.idea/**',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/generated/**',
+      'packages/backend/codegen.ts',
+    ],
   },
 
   {
