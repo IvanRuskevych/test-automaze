@@ -8,19 +8,19 @@ enum TaskStatus {
 }
 
 type Task {
-  taskId: ID!
+  id: ID!
   title: String!
   description: String
   isDone: Boolean!
   priority: Int!
-  dueDate: DateTime
+  # dueDate: DateTime
   category: Category
 }
 
 input TaskFilterInput {
   status: TaskStatus = all
   priority: PriorityRangeInput
-  dueDate: DateRangeInput
+  # dueDate: DateRangeInput
   categoryId: ID
   search: String
 }
@@ -43,7 +43,7 @@ input TaskCreateInput {
   title: String!
   description: String
   priority: Int
-  dueDate: DateTime
+  # dueDate: DateTime
   categoryId: ID
 }
 
@@ -51,7 +51,7 @@ input TaskUpdateInput {
   title: String
   description: String
   priority: Int
-  dueDate: DateTime
+  # dueDate: DateTime
   categoryId: ID
   isDone: Boolean
 }
@@ -61,8 +61,8 @@ input TaskMarkDoneInput {
 }
 
 extend type Mutation {
-  createTask(input: TaskCreateInput!): Task!
-  updateTask(taskId: ID!, input: TaskUpdateInput!): Task!
+  createTask(input: TaskCreateInput): Task!
+  updateTask(taskId: ID!, input: TaskUpdateInput): Task!
   deleteTask(taskId: ID!): Task!
-  markTaskDone(taskId: ID!, input: TaskMarkDoneInput!): Task!
+  markTaskDone(taskId: ID!, input: TaskMarkDoneInput): Task!
 }

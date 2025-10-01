@@ -1,8 +1,10 @@
 import { loadFilesSync } from '@graphql-tools/load-files';
 import { mergeTypeDefs } from '@graphql-tools/merge/typedefs-mergers/merge-typedefs';
-import path from 'path';
+import { fileURLToPath } from 'node:url';
+import * as path from 'path';
 
-const typesArray = loadFilesSync(path.join(__dirname), {
+const currentDir = path.dirname(fileURLToPath(import.meta.url));
+const typesArray = loadFilesSync(path.join(currentDir), {
   extensions: ['.graphql'],
   recursive: true,
 });
