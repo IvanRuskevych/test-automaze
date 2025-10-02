@@ -1,3 +1,3 @@
 export const ROUTES = {
-  ROOT: '/',
+  ROOT: '/graphql',
 };

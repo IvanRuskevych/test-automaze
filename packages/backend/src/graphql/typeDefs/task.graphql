@@ -1,0 +1,68 @@
+# -----------------------------
+# Queries
+# -----------------------------
+enum TaskStatus {
+  all
+  done
+  undone
+}
+
+type Task {
+  id: ID!
+  title: String!
+  description: String
+  isDone: Boolean!
+  priority: Int!
+  # dueDate: DateTime
+  category: Category
+}
+
+input TaskFilterInput {
+  status: TaskStatus = all
+  priority: PriorityRangeInput
+  # dueDate: DateRangeInput
+  categoryId: ID
+  search: String
+}
+
+input PriorityRangeInput {
+  min: Int
+  max: Int
+}
+
+extend type Query {
+  getTask(taskId: ID!): Task
+  getTasks(filter: TaskFilterInput, orderBy: OrderByInput, skip: Int, take: Int): [Task!]!
+}
+
+# -----------------------------
+# Mutations
+# -----------------------------
+
+input TaskCreateInput {
+  title: String!
+  description: String
+  priority: Int
+  # dueDate: DateTime
+  categoryId: ID
+}
+
+input TaskUpdateInput {
+  title: String
+  description: String
+  priority: Int
+  # dueDate: DateTime
+  categoryId: ID
+  isDone: Boolean
+}
+
+input TaskMarkDoneInput {
+  isDone: Boolean!
+}
+
+extend type Mutation {
+  createTask(input: TaskCreateInput): Task!
+  updateTask(taskId: ID!, input: TaskUpdateInput): Task!
+  deleteTask(taskId: ID!): Task!
+  markTaskDone(taskId: ID!, input: TaskMarkDoneInput): Task!
+}

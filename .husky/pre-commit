@@ -2,4 +2,10 @@
 . "$(dirname "$0")/_/husky.sh"
 
 echo "✅ Husky pre-commit hook triggered!"
-npx lint-staged
+
+npx lint-staged --quiet || {
+  echo "❌ Lint-staged failed. Please fix errors before commit."
+  exit 1
+}
+
+echo "✨ All checks passed! Proceeding with commit..."

@@ -1,9 +1,13 @@
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@as-integrations/express5';
 import cookieParser from 'cookie-parser';
 import cors, { CorsOptions } from 'cors';
 import dotenv from 'dotenv';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { env } from '~/config/env.js';
+import { schema } from '~/graphql/schema.js';
 import { ROUTES } from '~/shared/const/index.js';
+import { formatGraphQLError } from '~/utils/errors/index.js';
 import 'tsconfig-paths/register.js';
 
 dotenv.config();
@@ -22,10 +26,15 @@ async function startServer() {
   app.use(express.urlencoded({ extended: false }));
 
   // ---------------
-  // Routes
+  // GraphQL
   // ---------------
-  app.get(ROUTES.ROOT, (_req: Request, res: Response) => res.send('Hello from ESM!')); // TODO: Test route
+  const apolloServer = new ApolloServer({
+    schema,
+    formatError: formatGraphQLError,
+  });
+  await apolloServer.start();
 
+  app.use(ROUTES.ROOT, expressMiddleware(apolloServer));
   // ---------------
   // Start server
   // ---------------

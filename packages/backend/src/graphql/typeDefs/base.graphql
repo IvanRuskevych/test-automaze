@@ -1,0 +1,24 @@
+scalar DateTime
+
+enum SortDirection {
+  asc
+  desc
+}
+
+input OrderByInput {
+  field: String!
+  direction: SortDirection!
+}
+
+input DateRangeInput {
+  from: DateTime
+  to: DateTime
+}
+
+type Query {
+  _empty: String
+}
+
+type Mutation {
+  _empty: String
+}
