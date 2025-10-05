@@ -14,7 +14,8 @@
     "copy:graphql": "npm run copy:graphql",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "codegen": "graphql-codegen --config ./codegen.ts"
+    "codegen": "graphql-codegen --config ./codegen.ts",
+    "prisma:seed": "npx tsx src/prisma/seed.ts"
   },
   "dependencies": {
     "@apollo/server": "^5.0.0",
