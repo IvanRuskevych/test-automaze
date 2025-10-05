@@ -1,7 +1,8 @@
 import { apolloClient } from '~/apollo/client';
 import { CREATE_TASK, DELETE_TASK, UPDATE_TASK } from '~/graphql/mutations/tasks';
 import { GET_TASK, GET_TASKS, GET_TASKS_WITH_VALUES } from '~/graphql/queries/tasks';
-import type { TaskFormValues, TaskPriorityOrder, TaskStatus, UUID } from '~/types/task.type.ts';
+import type { UUID } from '~/types/category.type.ts';
+import type { TaskFormValues, TaskPriorityOrder, TaskStatus } from '~/types/task.type.ts';
 
 export const taskService = {
   getTasks: () => {
