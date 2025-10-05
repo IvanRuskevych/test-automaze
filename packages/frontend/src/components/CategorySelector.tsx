@@ -1,5 +1,5 @@
 import { CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import React, { useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { useCategoryStore } from '~/store/category.store';
 import type { Category } from '~/types/category.type.ts';
 
@@ -9,7 +9,7 @@ type Props = {
   label?: string;
 };
 
-export const CategorySelector: React.FC<Props> = ({ value, onChange, label = 'Category' }) => {
+export const CategorySelector: FC<Props> = ({ value, onChange, label = 'Category' }) => {
   const { categories, loading, fetchCategories } = useCategoryStore();
 
   useEffect(() => {
