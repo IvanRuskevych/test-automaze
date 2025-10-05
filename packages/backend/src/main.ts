@@ -4,7 +4,6 @@ import cookieParser from 'cookie-parser';
 import cors, { CorsOptions } from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
-import { env } from '~/config/env.js';
 import { schema } from '~/graphql/schema.js';
 import { ROUTES } from '~/shared/const/index.js';
 import { formatGraphQLError } from '~/utils/errors/index.js';
@@ -12,10 +11,12 @@ import 'tsconfig-paths/register.js';
 
 dotenv.config();
 
+const { PORT, NODE_ENV, CLIENT_URL } = process.env;
+
 async function startServer() {
   const app = express();
   const corsOptions: CorsOptions =
-    env.NODE_ENV === 'production' ? { origin: env.CLIENT_URL, credentials: true } : { origin: true, credentials: true };
+    NODE_ENV === 'production' ? { origin: CLIENT_URL, credentials: true } : { origin: true, credentials: true };
 
   // ---------------
   // Middleware
@@ -38,9 +39,9 @@ async function startServer() {
   // ---------------
   // Start server
   // ---------------
-  app.listen(env.PORT, () => {
+  app.listen(PORT, () => {
     // eslint-disable-next-line no-console
-    console.log(`🚀 Server running at http://localhost:${env.PORT}${ROUTES.ROOT}`);
+    console.log(`🚀 Apollo server running at http://localhost:${PORT}${ROUTES.ROOT}`);
   });
 }
 
